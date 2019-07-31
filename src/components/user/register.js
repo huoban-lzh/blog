@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import loading from '../../images/loading.gif'
 
-import UserActions from '../../actions/userActions'
+import UserActions from '../../actions/user'
 
 class Register extends Component {
   constructor(props) {

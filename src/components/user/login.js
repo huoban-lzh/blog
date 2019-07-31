@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link, browserHistory } from 'react-router'
 import loading from '../../images/loading.gif'
 
-import UserActions from '../../actions/userActions'
+import UserActions from '../../actions/user'
 
 class Login extends Component {
   constructor(props) {
