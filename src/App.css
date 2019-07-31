@@ -43,3 +43,8 @@ h2 {
   line-height: 30px;
   margin-left: 20px;
 }
+
+.user .button img {
+  margin-left: 100px;
+  width: 30px;
+}

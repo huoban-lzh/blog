@@ -42,6 +42,7 @@ class Register extends Component {
     let email = /^[a-zA-Z0-9_-]@(huoban)(\.com)$/
     let mobileReg = new RegExp(mobile)
     let emailReg = new RegExp(email)
+
     if (username === '') {
       alert('请输入用户名！')
     } else if (!mobileReg.test(username) && !emailReg.test(username)) {
@@ -71,10 +72,11 @@ class Register extends Component {
 
   setButton = () => {
     const {isSubmit} = this.state
+
     if (isSubmit) {
       return (
         <div className='button'>
-          <img src={loading} />
+          <img src={loading} alt='loading...' />
         </div>
       )
     } else {

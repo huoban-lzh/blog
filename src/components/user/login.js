@@ -23,10 +23,11 @@ class Login extends Component {
   }
 
   checkUserInfo = (username, password) => {
-    let mobile = /^1[3456789]\d{9}$/
-    let email = /^[a-zA-Z0-9_-]@(huoban)(\.com)$/
-    let mobileReg = new RegExp(mobile)
-    let emailReg = new RegExp(email)
+    const mobile = /^1[3456789]\d{9}$/
+    const email = /^[a-zA-Z0-9_-]@(huoban)(\.com)$/
+    const mobileReg = new RegExp(mobile)
+    const emailReg = new RegExp(email)
+
     if (username === '') {
       alert('请输入用户名！')
     } else if (!mobileReg.test(username) && !emailReg.test(username)) {
@@ -40,7 +41,7 @@ class Login extends Component {
 
   handleLogin = () => {
     const {username, password} = this.state
-    let params = {username, password}
+    const params = {username, password}
 
     this.checkUserInfo(username, password)
     UserActions.login(params).then((resp) => {
@@ -53,10 +54,11 @@ class Login extends Component {
 
   setButton = () => {
     const {isSubmit} = this.state
+
     if (isSubmit) {
       return (
         <div className='button'>
-          <img src={loading} alt=""/>
+          <img src={loading} alt="loading..."/>
         </div>
       )
     } else {
@@ -71,6 +73,7 @@ class Login extends Component {
 
   render() {
     const {username, password} = this.state
+
     return (
       <div className='user'>
         <h2>登录</h2>
