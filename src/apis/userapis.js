@@ -2,11 +2,11 @@ import request from 'superagent'
 
 const loginApi = (params) => {
   return new Promise((resolve, reject) => {
-    request.get('').query(params).end((err, resp) => {
+    request.post('http://devteam.huoban.com/testapi/user_login.php').send(params).end((err, resp) => {
       if(!err) {
-        resolve(resp)
+        resolve(JSON.parse(resp.text))
       } else {
-        reject(err)
+        reject(JSON.parse(resp.text))
       }
     })
   })
@@ -14,11 +14,11 @@ const loginApi = (params) => {
 
 const registerApi = (params) => {
   return new Promise((resolve, reject) => {
-    request.post('').send(params).end((err, resp) => {
+    request.post('http://devteam.huoban.com/testapi/user_reg.php').send(params).end((err, resp) => {
       if(!err) {
-        resolve(resp)
+        resolve(JSON.parse(resp.text))
       } else {
-        reject(err)
+        reject(JSON.parse(resp.text))
       }
     })
   })

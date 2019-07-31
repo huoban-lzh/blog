@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
+import loading from '../../images/loading.gif'
 
-// import UserActions from '../../actions/userActions'
+import UserActions from '../../actions/userActions'
 
 class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
-      password: ''
+      username: '15701039130',
+      password: '1',
+      isSubmit: false
     }
   }
 
@@ -25,21 +27,46 @@ class Login extends Component {
     let email = /^[a-zA-Z0-9_-]@(huoban)(\.com)$/
     let mobileReg = new RegExp(mobile)
     let emailReg = new RegExp(email)
-    if(username === '') {
+    if (username === '') {
       alert('请输入用户名！')
-    } else if(!mobileReg.test(username) && !emailReg.test(username)) {
+    } else if (!mobileReg.test(username) && !emailReg.test(username)) {
       alert('用户名必须为伙伴邮箱或者手机号！')
-    } else if(password === '') {
+    } else if (password === '') {
       alert('请输入密码！')
+    } else {
+      this.setState({isSubmit: true})
     }
   }
 
   handleLogin = () => {
     const {username, password} = this.state
-    // let params = {}
+    let params = {username, password}
 
     this.checkUserInfo(username, password)
-    // UserActions.login(params)
+    UserActions.login(params).then((resp) => {
+      browserHistory.push('/')
+    }).catch((err) => {
+      this.setState({username: '', password: '', isSubmit: false})
+      alert(err.error)
+    })
+  }
+
+  setButton = () => {
+    const {isSubmit} = this.state
+    if (isSubmit) {
+      return (
+        <div className='button'>
+          <img src={loading} alt=""/>
+        </div>
+      )
+    } else {
+      return (
+        <div className='button'>
+          <input type="button" value='登录' onClick={this.handleLogin} />
+          <Link to='/user/register'><input type="button" value='立即注册' /></Link>
+        </div>
+      )
+    }
   }
 
   render() {
@@ -53,10 +80,7 @@ class Login extends Component {
         <div>
           <p>密码：</p><input type="password"  value={password} onChange={this.handlePasswordChange} />
         </div>
-        <div className='button'>
-          <input type="button" value='登录' onClick={this.handleLogin} />
-          <Link to='/user/register'><input type="button" value='立即注册' /></Link>
-        </div>
+        {this.setButton()}
       </div>
     )
   }

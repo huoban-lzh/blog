@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import loading from '../../images/loading.gif'
 
-// import UserActions from '../../actions/userActions'
+import UserActions from '../../actions/userActions'
 
 class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
-      password: '',
-      confirmPassword: ''
+      username: '15701039130',
+      password: '1',
+      password2: '1',
+      isSubmit: false
     }
   }
 
@@ -21,46 +23,72 @@ class Register extends Component {
     this.setState({password: e.target.value})
   }
 
-  handleConfirmPasswordChange = (e) => {
-    this.setState({confirmPassword: e.target.value})
+  handlepassword2Change = (e) => {
+    this.setState({password2: e.target.value})
   }
 
-  checkUserInfo = (username, password, confirmPassword) => {
+  checkUserInfo = (username, password, password2) => {
     if (username === '') {
       alert('用户名不能为空！')
     } else if(password === '') {
       alert('密码不能为空！')
-    } else if(password !== confirmPassword) {
+    } else if(password !== password2) {
       alert('两次输入密码不一致！')
     }
   }
 
-  checkUserInfo = (username, password, confirmPassword) => {
+  checkUserInfo = (username, password, password2) => {
     let mobile = /^1[3456789]\d{9}$/
     let email = /^[a-zA-Z0-9_-]@(huoban)(\.com)$/
     let mobileReg = new RegExp(mobile)
     let emailReg = new RegExp(email)
-    if(username === '') {
+    if (username === '') {
       alert('请输入用户名！')
-    } else if(!mobileReg.test(username) && !emailReg.test(username)) {
+    } else if (!mobileReg.test(username) && !emailReg.test(username)) {
       alert('用户名必须为伙伴邮箱或者手机号！')
-    } else if(password === '') {
+    } else if (password === '') {
       alert('请输入密码！')
-    } else if(password !== confirmPassword) {
+    } else if (password !== password2) {
       alert('两次输入密码不一致！')
+    } else {
+      this.setState({isSubmit: true})
     }
   }
 
   handleRegister = () => {
-    const {username, password, confirmPassword} = this.state
-    // let params = {}
+    const {username, password, password2} = this.state
+    let params = {username, password, password2}
 
-    this.checkUserInfo(username, password, confirmPassword)
-    // UserActions.register(params)
+    this.checkUserInfo(username, password, password2)
+    UserActions.register(params).then((resp) => {
+      alert('用户 ' + username + ' 注册成功')
+    }).catch((err) => {
+      alert(err.error)
+    }).finally(() => {
+      this.setState({username: '', password: '', password2: '', isSubmit: false})
+    })
+  }
+
+  setButton = () => {
+    const {isSubmit} = this.state
+    if (isSubmit) {
+      return (
+        <div className='button'>
+          <img src={loading} />
+        </div>
+      )
+    } else {
+      return (
+        <div className='button'>
+          <input type="button" value='注册' onClick={this.handleRegister} />
+          <Link to='/user/login'><input type="button" value='立即登录' /></Link>
+        </div>
+      )
+    }
   }
 
   render() {
-    const {username, password, confirmPassword} = this.state
+    const {username, password, password2} = this.state
 
     return (
       <div className='user'>
@@ -75,12 +103,9 @@ class Register extends Component {
         </div>
         <div>
           <p>确认密码：</p>
-          <input type="password" value={confirmPassword} onChange={this.handleConfirmPasswordChange} />
+          <input type="password" value={password2} onChange={this.handlepassword2Change} />
         </div>
-        <div className='button'>
-          <input type="button" value='注册' onClick={this.handleRegister} />
-          <Link to='/user/login'><input type="button" value='立即登录' /></Link>
-        </div>
+        {this.setButton()}
       </div>
     )
   }
