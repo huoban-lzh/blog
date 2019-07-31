@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import UserActions from '../../actions/userActions'
+// import UserActions from '../../actions/userActions'
 
 class Login extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class Login extends Component {
 
   checkUserInfo = (username, password) => {
     let mobile = /^1[3456789]\d{9}$/
-    let email = /^[a-zA-Z0-9_-]@(huoban)(\.com)$/    
+    let email = /^[a-zA-Z0-9_-]@(huoban)(\.com)$/
     let mobileReg = new RegExp(mobile)
     let emailReg = new RegExp(email)
     if(username === '') {
@@ -45,12 +45,18 @@ class Login extends Component {
   render() {
     const {username, password} = this.state
     return (
-      <div>
-        <h3>登录</h3>
-        <p>用户名：</p><input type="text" value={username} onChange={this.handleUsernameChange} />
-        <p>密码：</p><input type="password"  value={password} onChange={this.handlePasswordChange} />
-        <input type="button" value='登录' onClick={this.handleLogin} />
-        <Link to='/user/register'><input type="button" value='立即注册' /></Link>
+      <div className='user'>
+        <h2>登录</h2>
+        <div>
+          <p>用户名：</p><input type="text" value={username} onChange={this.handleUsernameChange} />
+        </div>
+        <div>
+          <p>密码：</p><input type="password"  value={password} onChange={this.handlePasswordChange} />
+        </div>
+        <div className='button'>
+          <input type="button" value='登录' onClick={this.handleLogin} />
+          <Link to='/user/register'><input type="button" value='立即注册' /></Link>
+        </div>
       </div>
     )
   }

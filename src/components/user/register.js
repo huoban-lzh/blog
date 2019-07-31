@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import UserActions from '../../actions/userActions'
+// import UserActions from '../../actions/userActions'
 
 class Register extends Component {
   constructor(props) {
@@ -63,16 +63,24 @@ class Register extends Component {
     const {username, password, confirmPassword} = this.state
 
     return (
-      <div>
-        <h3>注册</h3>
-        <p>用户名：</p>
-        <input type="text" value={username} onChange={this.handleUsernameChange} />
-        <p>密码：</p>
-        <input type="password" value={password} onChange={this.handlePasswordChange} />
-        <p>确认密码：</p>
-        <input type="password" value={confirmPassword} onChange={this.handleConfirmPasswordChange} />
-        <input type="button" value='注册' onClick={this.handleRegister} />
-        <Link to='/user/login'><input type="button" value='立即登录' /></Link>
+      <div className='user'>
+        <h2>注册</h2>
+        <div>
+          <p>用户名：</p>
+          <input type="text" value={username} onChange={this.handleUsernameChange} />
+        </div>
+        <div>
+          <p>密码：</p>
+          <input type="password" value={password} onChange={this.handlePasswordChange} />
+        </div>
+        <div>
+          <p>确认密码：</p>
+          <input type="password" value={confirmPassword} onChange={this.handleConfirmPasswordChange} />
+        </div>
+        <div className='button'>
+          <input type="button" value='注册' onClick={this.handleRegister} />
+          <Link to='/user/login'><input type="button" value='立即登录' /></Link>
+        </div>
       </div>
     )
   }

@@ -1,0 +1,45 @@
+
+h2 {
+  width: 300px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+/* Register & Login */
+
+.user {
+  width: 100%;
+  margin-left: 250px;
+  margin-top: 200px;
+}
+
+.user div {
+  margin-top: 10px;
+  margin-left: 10px;
+  height: 30px;
+  width: 300px;
+}
+
+.user div p {
+  display: block;
+  float: left;
+  margin: 0;
+}
+
+.user input {
+  float: right;
+  width: 200px;
+}
+
+.user .button {
+  margin-left: 50px;
+  margin-top: 10px;
+}
+
+.user .button input {
+  float: none;
+  width: 80px;
+  font-size: 26px;
+  line-height: 30px;
+  margin-left: 20px;
+}
