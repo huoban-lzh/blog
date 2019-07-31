@@ -1,7 +1,7 @@
 import Reflux from 'reflux'
 import RefluxPromise from 'reflux-promise'
 import bluebird from 'bluebird'
-import Api from '../apis/userApis'
+import Api from '../apis/user'
 
 Reflux.use(RefluxPromise(bluebird))
 
@@ -15,6 +15,6 @@ const UserActions = Reflux.createActions({
 })
 
 UserActions.login.listenAndPromise(Api.loginApi)
-UserActions.register(Api.registerApi)
+UserActions.register.listenAndPromise(Api.registerApi)
 
 export default UserActions
