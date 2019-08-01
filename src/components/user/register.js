@@ -69,7 +69,7 @@ class Register extends Component {
     }
   }
 
-  setButton = () => {
+  getButton = () => {
     const { isSubmitting } = this.state
 
     if (isSubmitting) {
@@ -106,7 +106,7 @@ class Register extends Component {
           <p>确认密码：</p>
           <input type="password" value={password2} onChange={this.handlepassword2Change} />
         </div>
-        {this.setButton()}
+        {this.getButton()}
       </div>
     )
   }

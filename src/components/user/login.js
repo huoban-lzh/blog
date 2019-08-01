@@ -51,6 +51,7 @@ class Login extends Component {
     if (this.checkUserInfo()) {
       this.setState({ isSubmitting: true })
       UserActions.login(params).then((resp) => {
+        localStorage.setItem('username', resp.username)
         browserHistory.push('/')
       }).catch((err) => {
         this.setState({ username: '', password: '', isSubmitting: false })
@@ -59,7 +60,7 @@ class Login extends Component {
     }
   }
 
-  setButton = () => {
+  getButton = () => {
     const { isSubmitting } = this.state
 
     if (isSubmitting) {
@@ -90,7 +91,7 @@ class Login extends Component {
         <div>
           <p>密码：</p><input type="password" value={password} onChange={this.handlePasswordChange} />
         </div>
-        {this.setButton()}
+        {this.getButton()}
       </div>
     )
   }
