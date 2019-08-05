@@ -45,7 +45,7 @@ class Index extends Component {
       val = url.substr(1)
       vals = _.split(val, '&')
       for (let i = 0; i < vals.length; i++) {
-        theRequest[vals[i].split("=")[0]] = decodeURI(vals[i].split("=")[1]);
+        theRequest[vals[i].split('=')[0]] = decodeURI(vals[i].split('=')[1]);
       }
     }
 
@@ -81,14 +81,14 @@ class Index extends Component {
     if (isLoading) {
       return (
         <div>
-          <img src={loading} alt="loading" />
+          <img src={loading} alt='loading' />
         </div>
       )
     } else {
       return (
         <div>
           <Header category={category} getQuery={this.getQuery} onCategoryChange={this.handleCategoryChange} />
-          <List messages={messages} />
+          <List messages={messages} category={category} page={page} />
           <Pager pageNum={pageNum} page={page} getQuery={this.getQuery} onPageChange={this.handlePageChange} />
         </div>
       )

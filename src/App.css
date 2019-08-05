@@ -123,3 +123,23 @@ h2 {
 .current {
   color: red;
 }
+
+.article {
+  width: 100%;
+}
+
+.article h2 {
+  width: 100%;
+  margin-left: 0;
+  text-align: center;
+}
+
+.article p {
+  margin-left: 50px;
+}
+
+.article input {
+  margin-left: 50%;
+  margin-top: 30px;
+  transform: translate(-50%);
+}

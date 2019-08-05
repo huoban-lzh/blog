@@ -42,6 +42,10 @@ class Add extends Component {
     }
   }
 
+  toIndex = () => {
+    browserHistory.push('/')
+  }
+
   render() {
     const { title, category, content } = this.state
 
@@ -52,22 +56,23 @@ class Add extends Component {
           <h2>添加</h2>
           <div>
             <p>标题：</p>
-            <input type="text" value={title} onChange={this.handleTitleChange} />
+            <input type='text' value={title} onChange={this.handleTitleChange} />
           </div>
           <div>
             <p>分类：</p>
             <select value={category} onChange={this.handleCategoryChange}>
-              <option value="sort1">分类1</option>
-              <option value="sort2">分类2</option>
-              <option value="sort3">分类3</option>
+              <option value='sort1'>分类1</option>
+              <option value='sort2'>分类2</option>
+              <option value='sort3'>分类3</option>
             </select>
           </div>
           <div>
             <p>内容：</p>
-            <textarea cols="30" rows="10" value={content} onChange={this.handleContentChange} />
+            <textarea cols='30' rows='10' value={content} onChange={this.handleContentChange} />
           </div>
           <div>
-            <input type="button" value='提交' onClick={this.handleSubmit} />
+            <input type='button' value='提交' onClick={this.handleSubmit} />
+            <input type='button' value='返回' onClick={this.toIndex} />
           </div>
         </div>
       </div>

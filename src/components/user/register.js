@@ -81,7 +81,7 @@ class Register extends Component {
     } else {
       return (
         <div className='button'>
-          <input type="button" value='注册' onClick={this.handleRegister} />
+          <input type='button' value='注册' onClick={this.handleRegister} />
           <Link to='/user/login'>立即登录</Link>
         </div>
       )
@@ -96,15 +96,15 @@ class Register extends Component {
         <h2>注册</h2>
         <div>
           <p>用户名：</p>
-          <input type="text" value={username} onChange={this.handleUsernameChange} />
+          <input type='text' value={username} onChange={this.handleUsernameChange} />
         </div>
         <div>
           <p>密码：</p>
-          <input type="password" value={password} onChange={this.handlePasswordChange} />
+          <input type='password' value={password} onChange={this.handlePasswordChange} />
         </div>
         <div>
           <p>确认密码：</p>
-          <input type="password" value={password2} onChange={this.handlepassword2Change} />
+          <input type='password' value={password2} onChange={this.handlepassword2Change} />
         </div>
         {this.getButton()}
       </div>

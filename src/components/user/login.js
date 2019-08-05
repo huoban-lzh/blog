@@ -67,13 +67,13 @@ class Login extends Component {
     if (isSubmitting) {
       return (
         <div className='button'>
-          <img src={loading} alt="loading..." />
+          <img src={loading} alt='loading...' />
         </div>
       )
     } else {
       return (
         <div className='button'>
-          <input type="button" value='登录' onClick={this.handleLogin} />
+          <input type='button' value='登录' onClick={this.handleLogin} />
           <Link to='/user/register'>立即注册</Link>
         </div>
       )
@@ -87,10 +87,10 @@ class Login extends Component {
       <div className='inputBoard'>
         <h2>登录</h2>
         <div>
-          <p>用户名：</p><input type="text" value={username} onChange={this.handleUsernameChange} />
+          <p>用户名：</p><input type='text' value={username} onChange={this.handleUsernameChange} />
         </div>
         <div>
-          <p>密码：</p><input type="password" value={password} onChange={this.handlePasswordChange} />
+          <p>密码：</p><input type='password' value={password} onChange={this.handlePasswordChange} />
         </div>
         {this.getButton()}
       </div>

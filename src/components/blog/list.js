@@ -7,12 +7,12 @@ import Item from './item'
 class List extends Component {
 
   getItem = () => {
-    const { messages } = this.props
+    const { messages, category, page } = this.props
     let res = []
 
     _.forEach(messages, (message, index) => {
       res.push(
-        <Item key={index} message={message} index={index} />
+        <Item key={index} message={message} index={index} category={category} page={page} />
       )
     })
     return res
@@ -31,7 +31,7 @@ class List extends Component {
   render() {
     return (
       <div className='list'>
-        <input type="button" value='添加' onClick={this.toAdd} />
+        <input type='button' value='添加' onClick={this.toAdd} />
         {this.getItem()}
       </div>
     )

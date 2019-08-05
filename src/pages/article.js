@@ -4,9 +4,7 @@ import Article from '../components/blog/article'
 class ArticlePage extends Component {
   render() {
     return (
-      <div>
-        <Article />
-      </div>
+      <Article />
     )
   }
 }

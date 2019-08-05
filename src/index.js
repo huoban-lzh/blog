@@ -15,9 +15,9 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route path='/' components={Index} />
     <Route path='/blog/add' components={Add} />
+    <Route path='/blog/article' components={Article} />
     <Route path='/user/login' components={Login} />
     <Route path='/user/register' components={Register} />
-    <Route path='/blog/article' components={Article} />
   </Router>,
   document.getElementById('root')
 )

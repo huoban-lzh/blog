@@ -29,15 +29,15 @@ class UserInfo extends Component {
     if (!username) {
       return (
         <div className='userInfo'>
-          <input type="button" value='登录' onClick={this.toLogin} />
-          <input type="button" value='注册' onClick={this.toRegister} />
+          <input type='button' value='登录' onClick={this.toLogin} />
+          <input type='button' value='注册' onClick={this.toRegister} />
         </div>
       )
     } else {
       return (
         <div className='userInfo'>
           <p>用户名：{username}</p>
-          <input type="button" value='退出' onClick={this.handleExit} />
+          <input type='button' value='退出' onClick={this.handleExit} />
         </div>
       )
     }

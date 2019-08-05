@@ -4,9 +4,7 @@ import Add from '../components/blog/add'
 class AddPage extends Component {
   render() {
     return (
-      <div>
-        <Add />
-      </div>
+      <Add />
     )
   }
 }

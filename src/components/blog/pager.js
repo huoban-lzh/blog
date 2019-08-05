@@ -28,7 +28,7 @@ class Pager extends Component {
         className = ''
       }
       res.push(
-        <input key={i} className={className} type="button" value={i} onClick={this.onChangePage} />
+        <input key={i} className={className} type='button' value={i} onClick={this.onChangePage} />
       )
     }
 

@@ -18,10 +18,10 @@ class Nav extends Component {
   render() {
     return (
       <div className='nav'>
-        <input type="button" value='首页' onClick={_.partial(this.onChooseCategory, '')} />
-        <input type="button" value='分类1' onClick={_.partial(this.onChooseCategory, 'sort1')} />
-        <input type="button" value='分类2' onClick={_.partial(this.onChooseCategory, 'sort2')} />
-        <input type="button" value='分类3' onClick={_.partial(this.onChooseCategory, 'sort3')} />
+        <input type='button' value='首页' onClick={_.partial(this.onChooseCategory, '')} />
+        <input type='button' value='分类1' onClick={_.partial(this.onChooseCategory, 'sort1')} />
+        <input type='button' value='分类2' onClick={_.partial(this.onChooseCategory, 'sort2')} />
+        <input type='button' value='分类3' onClick={_.partial(this.onChooseCategory, 'sort3')} />
       </div>
     )
   }

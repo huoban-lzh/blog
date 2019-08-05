@@ -5,8 +5,18 @@ import { browserHistory } from 'react-router'
 
 class Item extends Component {
 
-  toDetail = () => {
-    browserHistory.push('/blog/article')
+  toArticle = (e) => {
+    let data = {
+      category: this.props.category,
+      page: this.props.page,
+      index: this.props.index
+    }
+    let path = {
+      pathname: '/blog/article',
+      query: data
+    }
+
+    browserHistory.push(path)
   }
 
   render() {
@@ -27,7 +37,7 @@ class Item extends Component {
     }
 
     return (
-      <div className='item' onClick={this.toDetail}>
+      <div className='item' onClick={this.toArticle}>
         <h4>{index + 1}.{message.title}({category})</h4>
         <p>创建人：{message.user.username}</p>
         <p>创建时间：{date}</p>
