@@ -92,7 +92,7 @@ class Register extends Component {
     const { username, password, password2 } = this.state
 
     return (
-      <div className='user'>
+      <div className='inputBoard'>
         <h2>注册</h2>
         <div>
           <p>用户名：</p>

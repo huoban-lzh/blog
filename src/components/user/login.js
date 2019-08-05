@@ -52,6 +52,7 @@ class Login extends Component {
       this.setState({ isSubmitting: true })
       UserActions.login(params).then((resp) => {
         localStorage.setItem('username', resp.username)
+        localStorage.setItem('user_id', resp.user_id)
         browserHistory.push('/')
       }).catch((err) => {
         this.setState({ username: '', password: '', isSubmitting: false })
@@ -83,7 +84,7 @@ class Login extends Component {
     const { username, password } = this.state
 
     return (
-      <div className='user'>
+      <div className='inputBoard'>
         <h2>登录</h2>
         <div>
           <p>用户名：</p><input type="text" value={username} onChange={this.handleUsernameChange} />

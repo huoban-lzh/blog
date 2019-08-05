@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import moment from 'moment'
+import { browserHistory } from 'react-router'
 
 class Item extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      // articleTitle: '',
-      // publishUser: '',
-      // publishDate: '',
-      // articleIntro: ''
-    }
+
+  toDetail = () => {
+    browserHistory.push('/blog/article')
   }
 
   render() {
@@ -31,7 +27,7 @@ class Item extends Component {
     }
 
     return (
-      <div className='item'>
+      <div className='item' onClick={this.toDetail}>
         <h4>{index + 1}.{message.title}({category})</h4>
         <p>创建人：{message.user.username}</p>
         <p>创建时间：{date}</p>
