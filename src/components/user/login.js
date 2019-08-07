@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, browserHistory } from 'react-router'
 import loading from '../../images/loading.gif'
+import Func from '../../util/func'
 
 import UserActions from '../../actions/user'
 
@@ -24,16 +25,12 @@ class Login extends Component {
 
   checkUserInfo = () => {
     const { username, password } = this.state
-    const mobile = /^1[3456789]\d{9}$/
-    const email = /^[a-zA-Z0-9_-]+@huoban\.com$/
-    const mobileReg = new RegExp(mobile)
-    const emailReg = new RegExp(email)
 
     if (username === '') {
       alert('请输入用户名！')
       return false
     }
-    if (!mobileReg.test(username) && !emailReg.test(username)) {
+    if (!Func.isMobile(username) && !Func.isEmail(username)) {
       alert('用户名必须为伙伴邮箱或者手机号！')
       return false
     }

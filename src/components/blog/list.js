@@ -1,10 +1,21 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import { browserHistory } from 'react-router'
+import PropTypes from 'prop-types'
 
 import Item from './item'
 
 class List extends Component {
+  static propTypes = {
+    messages: PropTypes.array,
+    category: PropTypes.string.isRequired,
+    page: PropTypes.string.isRequired
+  }
+
+  static defaultProps = {
+    category: '',
+    page: '1'
+  }
 
   getItem = () => {
     const { messages, category, page } = this.props
@@ -12,7 +23,7 @@ class List extends Component {
 
     _.forEach(messages, (message, index) => {
       res.push(
-        <Item key={index} message={message} index={index} category={category} page={page} />
+        <Item key={message.id} message={message} index={index} category={category} page={page} />
       )
     })
     return res

@@ -12,7 +12,11 @@ class Add extends Component {
       title: '',
       category: 'sort1',
       content: '',
-      user_id: ''
+      userId: ''
+    }
+
+    if (!localStorage.getItem('user_id')) {
+      browserHistory.push('/')
     }
   }
 
@@ -30,16 +34,16 @@ class Add extends Component {
 
   handleSubmit = () => {
     const { title, content, category } = this.state
-    const user_id = localStorage.getItem('user_id')
-    const params = { title, content, category, user_id }
+    const params = { title, content, category }
 
-    if (user_id) {
-      BlogActions.addMessage(params).then(() => {
-        browserHistory.push('/')
-      })
-    } else {
-      alert('请先登录！')
+    if (title === '' || content === '') {
+      alert('标题和内容不能为空')
+      return
     }
+    BlogActions.addMessage(params).then(() => {
+      browserHistory.push('/')
+    })
+
   }
 
   toIndex = () => {

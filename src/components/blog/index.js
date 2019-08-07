@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
+import Func from '../../util/func'
 
 import Header from './header'
 import List from './list'
@@ -20,12 +21,12 @@ class Index extends Component {
       messages: data.messages,
       total: data.total,
       category: '',
-      page: 1,
+      page: '1',
       pageNum: 1,
       isLoading: true
     }
 
-    BlogStore.listen(this.handleMessageChange)
+    this.unsubscribe = BlogStore.listen(this.handleMessageChange)
   }
 
   handleMessageChange = (data) => {
@@ -35,44 +36,30 @@ class Index extends Component {
     this.setState({ messages, pageNum })
   }
 
-  getQuery = () => {
-    let url = location.search
-    let val = ''
-    let vals = []
-    let theRequest = {}
-
-    if (url.indexOf('?') !== -1) {
-      val = url.substr(1)
-      vals = _.split(val, '&')
-      for (let i = 0; i < vals.length; i++) {
-        theRequest[vals[i].split('=')[0]] = decodeURI(vals[i].split('=')[1]);
-      }
-    }
-
-    return theRequest
-  }
-
   componentDidMount() {
     this.handleRequest()
   }
 
+  componentWillUnmount() {
+    this.unsubscribe()
+  }
+
+  componentWillReceiveProps() {
+    this.handleRequest()
+  }
+
   handleRequest = () => {
-    const { category, page } = this.getQuery()
+    const { category, page } = Func.getQuery()
     const params = { category, page, perPage: PER_PAGE }
 
-    BlogActions.getMessages(params).then((resp) => {
-
-    }).finally(() => {
+    if (page) {
+      this.setState({ isLoading: true, category, page })
+    } else {
+      this.setState({ isLoading: true, category })
+    }
+    BlogActions.getMessages(params).finally(() => {
       this.setState({ isLoading: false })
     })
-  }
-
-  handleCategoryChange = () => {
-    this.setState({ category: this.getQuery().category }, this.handleRequest())
-  }
-
-  handlePageChange = () => {
-    this.setState({ page: this.getQuery().page }, this.handleRequest())
   }
 
   render() {
@@ -87,9 +74,9 @@ class Index extends Component {
     } else {
       return (
         <div>
-          <Header category={category} getQuery={this.getQuery} onCategoryChange={this.handleCategoryChange} />
+          <Header category={category} />
           <List messages={messages} category={category} page={page} />
-          <Pager pageNum={pageNum} page={page} getQuery={this.getQuery} onPageChange={this.handlePageChange} />
+          <Pager pageNum={pageNum} page={page} />
         </div>
       )
     }

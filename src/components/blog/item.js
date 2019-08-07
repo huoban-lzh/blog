@@ -2,8 +2,21 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import moment from 'moment'
 import { browserHistory } from 'react-router'
+import CATEGORIES from '../../util/constants'
+import PropTypes from 'prop-types'
 
 class Item extends Component {
+  static propTypes = {
+    message: PropTypes.object.isRequired,
+    category: PropTypes.string.isRequired,
+    page: PropTypes.string.isRequired
+  }
+
+  static defaultProps = {
+    message: {},
+    category: '',
+    page: '1'
+  }
 
   toArticle = (e) => {
     let data = {
@@ -21,24 +34,15 @@ class Item extends Component {
 
   render() {
     const { message, index } = this.props
-    // const create_time = message.created_on
     const date = moment.unix(message.created_on).format('YYYY年MM月DD日 HH:mm')
-    let category = ''
     let intro = _.truncate(message.content, {
       'length': 23
     })
-
-    if (message.category === 'sort1') {
-      category = '分类1'
-    } else if (message.category === 'sort2') {
-      category = '分类2'
-    } else if (message.category === 'sort3') {
-      category = '分类3'
-    }
+    let category = _.find(CATEGORIES, { id: message.category })
 
     return (
       <div className='item' onClick={this.toArticle}>
-        <h4>{index + 1}.{message.title}({category})</h4>
+        <h4>{index + 1}.{message.title}({category.name})</h4>
         <p>创建人：{message.user.username}</p>
         <p>创建时间：{date}</p>
         <p>简介：{intro}</p>

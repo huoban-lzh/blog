@@ -21,6 +21,7 @@ class UserInfo extends Component {
     localStorage.removeItem('username')
     localStorage.removeItem('user_id')
     this.setState({ username: localStorage.getItem('username') })
+    window.location.reload()
   }
 
   render() {
