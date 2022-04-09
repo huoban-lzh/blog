@@ -6,7 +6,7 @@
     "bluebird": "^2.11.0",
     "immutability-helper": "^3.0.1",
     "lodash": "^4.17.14",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-mixin": "^3.0.5",
