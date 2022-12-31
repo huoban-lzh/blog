@@ -12,7 +12,7 @@
     "react-mixin": "^3.0.5",
     "react-router": "^2.8.1",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "0.9.x",
+    "react-scripts": "5.0.x",
     "reflux": "^0.4.1",
     "reflux-promise": "^1.0.4",
     "superagent": "^5.1.0"
